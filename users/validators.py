@@ -8,9 +8,11 @@ class PasswordValidator:
         self.field = field
 
     def __call__(self, password):
-        if not any(char.isdigit() for char in password):
+        reg = re.compile(r"[0-9]")
+        tmp_val = dict(password).get(self.field)
+        if not bool(reg.match(tmp_val)):
             raise ValidationError(f'Пароль должен содержать хотя бы одну цифру')
-        if len(password) < 8:
+        if len(password.get(self.field)) < 8:
             raise ValidationError(f'Длина пароля должна составлять не менее 8 символов')
 
 
@@ -19,6 +21,6 @@ class EmailValidator:
         self.field = field
 
     def __call__(self, value):
-        val = dict(value).get(self.field)
-        if val and "mail.ru" or "yandex.ru" not in val:
-            raise ValidationError(f'{self.field} должен использовать только домены "mail.ru" or "yandex.ru"')
+        allowed_domains = ["mail.ru", "yandex.ru"]
+        if any(word in value for word in allowed_domains):
+            raise ValidationError(f"Разрешены следующие домены {', '.join(allowed_domains)}")

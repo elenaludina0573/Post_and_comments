@@ -9,14 +9,14 @@ app_name = PostConfig.name
 router = DefaultRouter()
 
 urlpatterns = [
-    path('post/', PostListAPIView.as_view(), name='post_list'),
-    path('post/create/', PostCreateAPIView.as_view(), name='post_create'),
-    path('post/<int:pk>/', PostRetrieveAPIView.as_view(), name='post_retrieve'),
-    path('post/<int:pk>/update/', PostUpdateAPIView.as_view(), name='post_update'),
-    path('post/<int:pk>/delete', PostDestroyAPIView.as_view(), name='post_delete'),
-    path('comment/', CommentListAPIView.as_view(), name='comment_list'),
-    path('comment/create/', PostCreateAPIView.as_view(), name='comment_create'),
-    path('comment/<int:pk>/', PostRetrieveAPIView.as_view(), name='comment_retrieve'),
-    path('comment/<int:pk>/update/', PostUpdateAPIView.as_view(), name='comment_update'),
-    path('comment/<int:pk>/delete', PostDestroyAPIView.as_view(), name='comment_delete'),
+    path('posts/', PostListAPIView.as_view(), name='post_list'),
+    path('posts/create/', PostCreateAPIView.as_view(), name='post_create'),
+    path('posts/<int:pk>/', PostRetrieveAPIView.as_view(), name='post_retrieve'),
+    path('posts/<int:pk>/update/', PostUpdateAPIView.as_view(), name='post_update'),
+    path('posts/<int:pk>/delete/', PostDestroyAPIView.as_view(), name='post_delete'),
+    path('comments/', CommentListAPIView.as_view(), name='comment_list'),
+    path('comments/create/', PostCreateAPIView.as_view(), name='comment_create'),
+    path('comments/<int:pk>/', PostRetrieveAPIView.as_view(), name='comment_retrieve'),
+    path('comments/<int:pk>/update/', PostUpdateAPIView.as_view(), name='comment_update'),
+    path('comments/<int:pk>/delete/', PostDestroyAPIView.as_view(), name='comment_delete'),
 ] + router.urls

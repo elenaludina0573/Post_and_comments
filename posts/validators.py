@@ -20,8 +20,8 @@ class AuthorValidator:
         self.field = field
 
     def __call__(self, value):
-        value = datetime.strptime(value, '%Y-%m-%d')
+        value = datetime.strptime(value, "%Y-%m-%d").date()
         today = datetime.today()
-        age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
+        age = (today.year - value.year - ((today.month, today.day) < (value.month, value.day)))
         if age < 18:
             raise ValidationError(f"Автор должен быть не моложе 18 лет.")
